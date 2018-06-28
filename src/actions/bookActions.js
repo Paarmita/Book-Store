@@ -1,9 +1,19 @@
-export const createBook = (book) => {
 
+
+export const createBook = (Book) => {
   return {
-    // Unique identifier
     type: 'CREATE_BOOK',
-    // Payload
-    book: book
+    book:  Book
   }
 };
+
+/*
+
+you can also write the same !!!
+
+export const createBook = (Book) => ({
+    type: 'CREATE_BOOK',
+    book:  Book
+});
+
+*/

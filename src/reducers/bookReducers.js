@@ -1,4 +1,6 @@
-export default (state = [], action) => {
+
+
+const BookReducer = (state = [], action) => {
   switch (action.type){
     // Check if action dispatched is CREATE_BOOK and act on that
     case 'CREATE_BOOK':
@@ -13,3 +15,5 @@ export default (state = [], action) => {
   }
 };
 
+
+export default BookReducer;
