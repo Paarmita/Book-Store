@@ -1,61 +1,80 @@
+
 import React from 'react';
 import { connect } from 'react-redux';
-import * as bookActions from '../../actions/bookActions';
+import Nav    from '../Navigation/nav';
+import {createBook} from '../../actions/bookActions';
+import { bindActionCreators } from 'redux';
 
 class Book extends React.Component{
+
   constructor(props){
     super(props);
+
+    this.state = {
+      title: ''
+    }
+
+    console.log(this);
   }
 
-  // Submit book handler
-  submitBook(input){
-    alert('Submitted')
-    this.props.createBook(input);
+  handleChange(event){
+      this.setState({
+        title: event.target.value
+      });
+  }
+
+  handleClick(){
+    console.log('called')
+    this.props.createBook(this.state.title);
   }
 
   render(){
-    // Title input tracker
-    let titleInput;
+
+    let _book_data;
+
+    if(this.props.books.BookReducer.length >= 0){
+        _book_data = this.props.books.BookReducer.map((book, i) => <li key={i}>{book}</li> );
+    }
+    else
+    {
+      _book_data = ''
+    }
 
     return(
+
       <div>
-        <h3>Books</h3>
-        <ul>
-          {/* Traverse books array  */}
-          {this.props.books.map((b, i) => <li key={i}>{b.title}</li> )}
-        </ul>
-        <div>
-          <h3>Books Form</h3>
-          <form onSubmit={e => {
-            e.preventDefault(); // Prevent request
-            var input = {title: titleInput.value};  // Assemble inputs
-            this.submitBook(input);  // Call handler
-            e.target.reset();   // Reset form
-          }}>
-            <input type="text" name="title" ref={node => titleInput = node}/>
-            <input type="submit" />
-          </form>
-        </div>
+        <Nav />
+        <div className = "container">
+          <h4>Add Books</h4>
+            <ul>
+                {_book_data}
+            </ul>
+
+            <div>
+                <div className="form-group">
+                  <label htmlFor="email">Book Name: </label>
+                  <input className = "form-control" type="text" name="title" value = {this.state.title} onChange = {(e) => {this.handleChange(e)}} />
+                </div>
+                 <button className = 'btn btn-default' onClick = {(e)=> {this.handleClick(e)}}> SUBMIT </button>
+            </div>  
+         </div>
       </div>
     )
   }
 }
 
-// Maps state from store to props
 const mapStateToProps = (state, ownProps) => {
+
+  console.log('data',state);
   return {
-    // You can now say this.props.books
-    books: state.books
+    books: state
   }
 };
 
-// Maps actions to props
 const mapDispatchToProps = (dispatch) => {
-  return {
-  // You can now say this.props.createBook
-    createBook: book => dispatch(bookActions.createBook(book))
-  }
-};
+  return bindActionCreators({createBook}, dispatch);
+}
+
 
 // Use connect to put them together
 export default connect(mapStateToProps, mapDispatchToProps)(Book);

@@ -1,41 +1,42 @@
+
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { render } from 'react-dom';
 import './index.css';
 
-import { BrowserRouter } from 'react-router-dom'
-import { Provider } from 'react-redux';
+// ROUTER
 import { BrowserRouter as Router,Route, Switch } from 'react-router-dom';
 
-// import routes from './routes';
-import configureStore from './store/configureStore';
+// STORE
+import { Provider }        from 'react-redux';
+import { combineReducers } from 'redux'
+import { rootReducer }     from './reducers';
+import { createStore }       from 'redux';
 
-import registerServiceWorker from './registerServiceWorker';
-
-import Home from './components/common/HomePage'
+//ROUTES
+import Home  from './components/common/HomePage'
 import About from './components/common/AboutPage'
-import Book from './components/book/BookPage'
-import App from './App';
+import Book  from './components/book/BookPage'
+import App   from './App';
 
-const store = configureStore();
 
+const store = createStore(rootReducer);
 
 const Root = ({ store }) => (
   <Provider store={store}>
     <Router>
      <Switch>
-      <Route path="/" component={App}>
-        <Route exact path="/" component={Home}/>
-        <Route path="/about" component={About}></Route>
-        <Route path="/books" component={Book}></Route>
-      </Route>
+       
+        <Route path="/about"  component={About}/>
+        <Route path="/books"  component={Book} />
+
+        <Route path="/"       component={App} />
+        <Route exact path="/" component={Home} />
+
      </Switch>
     </Router>
   </Provider>
 )
 
-// ReactDOM.render(<App />, document.getElementById('root'));
-// registerServiceWorker();
 ReactDOM.render(
   <Root store={store}/>,
   document.getElementById('root')

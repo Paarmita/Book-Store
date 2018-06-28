@@ -1,10 +1,14 @@
+
 import React from 'react';
+import Nav    from '../Navigation/nav';
 
 const About = () => {
   return (
     <div>
-      <h1>About Page</h1>
-
+      <Nav />
+      <div className = "container">
+      	<h4>About Page</h4>
+      </div>
     </div>
   );
 };
