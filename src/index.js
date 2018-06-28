@@ -10,7 +10,7 @@ import { BrowserRouter as Router,Route, Switch } from 'react-router-dom';
 import { Provider }        from 'react-redux';
 import { combineReducers } from 'redux'
 import { rootReducer }     from './reducers';
-import {createStore}       from 'redux';
+import { createStore }       from 'redux';
 
 //ROUTES
 import Home  from './components/common/HomePage'

@@ -6,7 +6,9 @@ const About = () => {
   return (
     <div>
       <Nav />
-      <h1>About Page</h1>
+      <div className = "container">
+      	<h4>About Page</h4>
+      </div>
     </div>
   );
 };
