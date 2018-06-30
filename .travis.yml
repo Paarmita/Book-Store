@@ -1,8 +1,1 @@
 language: node_js
-deploy:
-  provider: surge
-  skip_cleanup: true
-  domain: book-store.surge.sh
-  project: ./build/
-on:
-  branch: master
