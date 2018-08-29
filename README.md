@@ -14,4 +14,7 @@ $ cd Book-store
 $ npm install
 $ npm start
 ```
-
+For running the tests
+```
+$ npm test
+```
