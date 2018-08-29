@@ -1,7 +1,7 @@
 
 
 const i_state = {
-  book: ['divyanshu']
+  book: ['']
 }
 
 const BookReducer = (state = i_state, action) => {
