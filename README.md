@@ -1,5 +1,7 @@
 # Book-store
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/Paarmita/Book-Store.svg)](https://greenkeeper.io/)
+
 React-redux book store app.
 
 See the live site [here](http://book-store.surge.sh/).
